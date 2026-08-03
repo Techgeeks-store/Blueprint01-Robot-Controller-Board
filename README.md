@@ -297,7 +297,7 @@ void setup() {
   Serial.begin(9600);
   Robot.begin();
   sensors.begin(pins);
-  sensors.setPID(0.03, 0.0, 0.02);
+  sensors.setPID(0.07, 0.0, 1.5);
 
   Robot.waitFor(LB);          // press left to calibrate
   Robot.ledOn(LED1);
@@ -315,7 +315,7 @@ void setup() {
 void loop() {
   sensors.read(values);
   int correction = sensors.getCorrection();
-  Robot.drive(120 + correction, 120 - correction);
+  Robot.drive(120 - correction, 120 + correction);
 }
 ```
 
