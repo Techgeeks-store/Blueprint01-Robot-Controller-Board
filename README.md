@@ -297,7 +297,7 @@ void setup() {
   Serial.begin(9600);
   Robot.begin();
   sensors.begin(pins);
-  sensors.setPID(0.07, 0.0, 1.5);
+  sensors.setPID(0.03, 0.0, 0.8);
 
   Robot.waitFor(LB);          // press left to calibrate
   Robot.ledOn(LED1);
