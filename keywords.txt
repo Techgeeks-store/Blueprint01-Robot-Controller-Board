@@ -1,0 +1,38 @@
+#######################################
+# Syntax Coloring Map For RCBoard
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+RCBoard	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	KEYWORD2
+drive	KEYWORD2
+stop	KEYWORD2
+isPressed	KEYWORD2
+waitFor	KEYWORD2
+ledOn	KEYWORD2
+ledOff	KEYWORD2
+ledToggle	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+LB	LITERAL1
+RB	LITERAL1
+LED1	LITERAL1
+LED2	LITERAL1
+PWMA	LITERAL1
+PWMB	LITERAL1
+AIN1	LITERAL1
+AIN2	LITERAL1
+BIN1	LITERAL1
+BIN2	LITERAL1
+STDBY	LITERAL1

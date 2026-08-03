@@ -1,0 +1,13 @@
+# Packaged library archive - rebuilt on release, not tracked in the repo
+RCBoard.zip
+
+# Claude Code local settings
+.claude/
+
+# Arduino / editor leftovers
+build/
+*.o
+*.elf
+*.hex
+.DS_Store
+Thumbs.db
