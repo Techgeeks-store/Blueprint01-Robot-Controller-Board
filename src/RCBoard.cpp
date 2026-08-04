@@ -14,6 +14,12 @@ RCBoard::RCBoard() {
     _lastChange[i] = 0;
   }
 
+  _kp = 0.0;
+  _ki = 0.0;
+  _kd = 0.0;
+  _lastError = 0;
+  _integral  = 0;
+
   _warnedNoBegin = false;
   _warnedButton  = false;
   _warnedLed     = false;
@@ -93,6 +99,45 @@ void RCBoard::_driveMotor(int in1, int in2, int pwm, int speed) {
     digitalWrite(in2, HIGH);
     analogWrite(pwm, 0);
   }
+}
+
+// ---------------------------------------------------------------------------
+// PID steering
+// ---------------------------------------------------------------------------
+
+void RCBoard::setPID(float kp, float ki, float kd) {
+  _kp = kp;
+  _ki = ki;
+  _kd = kd;
+}
+
+// Turns "how far off the line am I" into "how hard should I steer".
+//
+// Feed it the error from your sensor array, for instance
+// sensors.getError() from an ARC8 or ARC16. Three parts add up:
+//
+//   P  how far off you are right now
+//   I  how far off you have been, all added together
+//   D  how fast that is changing, which damps the wobble
+//
+// Then steer with the answer:
+//   Robot.drive(base - correction, base + correction);
+int RCBoard::getCorrection(int error) {
+  if (!_checkBegan()) return 0;
+
+  int P = error;
+
+  // _integral keeps every error we have ever had, added together. One error
+  // can be thousands, so an int would fill up and wrap round to a huge
+  // negative number within a few loops, yanking the robot the wrong way.
+  // A long has room for hours of driving.
+  _integral += error;
+
+  int D = error - _lastError;
+  _lastError = error;
+
+  float output = _kp * P + _ki * _integral + _kd * D;
+  return (int)output;
 }
 
 // ---------------------------------------------------------------------------

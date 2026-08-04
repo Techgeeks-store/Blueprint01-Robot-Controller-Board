@@ -50,6 +50,12 @@ class RCBoard {
     // Pauses your sketch until the button is pressed. Pass LB or RB.
     void waitFor(int button);
 
+    // Sets the three numbers that decide how hard the robot steers.
+    void setPID(float kp, float ki, float kd);
+
+    // Turns how far off the line you are into a steering number.
+    int getCorrection(int error);
+
     // Turns an LED on. Pass LED1 or LED2.
     void ledOn(int led);
 
@@ -63,6 +69,11 @@ class RCBoard {
     bool _began;             // has begin() been called?
 
     bool _ledState[2];       // what we last told each LED to do
+
+    float _kp, _ki, _kd;     // the three PID steering numbers
+    int   _lastError;        // the error from the previous getCorrection()
+    long  _integral;         // every error so far, added up. A long, because
+                             // an int fills up after only a few loops
 
     // Only used when you ask isPressed() for a debounce.
     bool          _lastRaw[2];     // the reading we saw last time
