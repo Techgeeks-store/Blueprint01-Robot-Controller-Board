@@ -48,7 +48,7 @@ This library covers the parts that are wired into the board. Your sensor array i
 
 ### Option 1 — Add .ZIP Library (recommended)
 
-1. Download **`RCBoard.zip`** from the [Releases page](https://github.com/Techgeeks-store/Blueprint01-Robot-Controller-Board/releases).
+1. Download **`RCBoard.zip`**.
 2. In the Arduino IDE, go to **Sketch → Include Library → Add .ZIP Library…**
 3. Select the file you downloaded.
 
